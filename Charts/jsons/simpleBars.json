@@ -1,0 +1,19 @@
+{
+    "title": "Título",
+    "subtitle": "Subtítulo",
+    "desc": "Desc",
+    "data": [
+        {
+            "label": "Et1",
+            "value": 1,
+            "color": "#FFFFFF"
+        },{
+            "label": "Et2",
+            "value": 2,
+            "highlight":true
+        },{
+            "label": "Et3",
+            "value": 5
+        }
+    ]
+}

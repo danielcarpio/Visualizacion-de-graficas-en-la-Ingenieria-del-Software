@@ -1,0 +1,23 @@
+{
+    "title": "Título de ejemplo",
+    "subtitle": "Subtítulo de ejemplo",
+    "desc": "Descripción",
+    "legend": ["Valor 1","Valor 2","Valor 3"],
+    "color": ["#AAAAAA", "#BBBBBB", "#CCCCCC"],
+    "colorHighlight": ["DDDDDD", "EEEEEE", "FFFFFF"],
+    "data": [
+        {
+            "label": "Etiqueta 1",
+            "values": [1,2,2]
+        },
+        {
+            "label": "Etiqueta 2",
+            "values": [2,3,1],
+            "highlight": true
+        },
+        {
+            "label": "Etiqueta 3",
+            "values": [1,5,1]
+        }
+    ]
+}
