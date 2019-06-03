@@ -1,0 +1,126 @@
+{% include "../header.html" %}
+{% load static %}
+
+<div class="row">
+    <div class="col-xl-3 col-sm-6 mb-3">
+        <img class="img-fluid" src="{{avatar}}"/>
+    </div>
+</div>
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="https://www.github.com/{{title}}">{{owner}}</a>
+    </li>
+    <li class="breadcrumb-item active">
+        <a href="https://www.github.com/{{title}}" style="color:grey">https://www.github.com/{{title}}</a>
+    </li>
+</ol>
+
+<div class="row">
+            <div class="col-xl-4 col-sm-6 mb-4">
+              <div class="card text-white bg-warning o-hidden h-100">
+                <div class="card-body">
+                  <div class="card-body-icon">
+                    <i class="fas fa-fw fa-star"></i>
+                  </div>
+                  <div class="mr-5">{{stars}} stars!</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-4 col-sm-6 mb-4">
+              <div class="card text-white bg-success o-hidden h-100">
+                <div class="card-body">
+                  <div class="card-body-icon">
+                    <i class="fas fa-fw fa-eye"></i>
+                  </div>
+                  <div class="mr-5">{{watchers}} watchers!</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-4 col-sm-6 mb-4">
+              <div class="card text-white bg-danger o-hidden h-100">
+                <div class="card-body">
+                  <div class="card-body-icon">
+                    <i class="fas fa-fw fa-exclamation-triangle"></i>
+                  </div>
+                  <div class="mr-5">{{issues}} issues!</div>
+                </div>
+              </div>
+            </div>
+</div>
+
+<div class="row">
+            <div class="col-xl-4 col-sm-6 mb-4">
+              <div class="card text-white bg-primary o-hidden h-100">
+                <div class="card-body">
+                  <div class="card-body-icon">
+                    <i class="fas fa-fw fa-balance-scale"></i>
+                  </div>
+                  <div class="mr-5">{{license}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-4 col-sm-6 mb-4">
+              <div class="card text-white bg-secondary o-hidden h-100">
+                <div class="card-body">
+                  <div class="card-body-icon">
+                    <i class="fas fa-fw fa-clock"></i>
+                  </div>
+                  <div class="mr-5">Created at: {{created_at}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-4 col-sm-6 mb-4">
+              <div class="card text-white bg-info o-hidden h-100">
+                <div class="card-body">
+                  <div class="card-body-icon">
+                    <i class="fas fa-fw fa-clock"></i>
+                  </div>
+                  <div class="mr-5">Last push at: {{pushed_at}}</div>
+                </div>
+              </div>
+            </div>
+</div>
+
+<div class="row">
+            <div class="col-xl-4 col-sm-6 mb-4">
+              <div class="card text-white bg-success o-hidden h-100">
+                <div class="card-body">
+                  <div class="card-body-icon">
+                    <i class="fas fa-fw fa-wikipedia-w"></i>
+                  </div>
+                  {% if wiki%}
+                    <div class="mr-5">Wiki: YES!</div>
+                  {% else %}
+                    <div class="mr-5">Wiki: No...</div>
+                  {% endif%}
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-4 col-sm-6 mb-4">
+              <div class="card text-white bg-info o-hidden h-100">
+                <div class="card-body">
+                  <div class="card-body-icon">
+                    <i class="fas fa-fw fa-tags"></i>
+                  </div>
+                      {% if project%}
+                        <div class="mr-5">Projects: YES!</div>
+                      {% else %}
+                        <div class="mr-5">Projects: No...</div>
+                      {% endif%}
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-4 col-sm-6 mb-4">
+              <div class="card text-white bg-warning o-hidden h-100">
+                <div class="card-body">
+                  <div class="card-body-icon">
+                    <i class="fas fa-fw fa-code-branch"></i>
+                  </div>
+                  <div class="mr-5">Forks: {{forks}}</div>
+                </div>
+              </div>
+            </div>
+</div>
+
+{% include "../footer.html" %}

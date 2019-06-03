@@ -1,0 +1,62 @@
+body{
+	background: url("../img/indexBackground.jpg"); /*URL de la imagen*/
+	background-position: center center; /*Deja la imagen centrada*/
+	background-size: cover; /*La imagen se reescala en funciÃ³n del ancho de la pantalla*/
+  	background-repeat: no-repeat; /*La imagen no se repite*/
+  	background-attachment: fixed; /*La imagen se ajusta a la ventana*/
+  	background-color: black; /*Color de fondo por si no se carga bien la imagen*/
+}
+
+.bottom-align-text > h4, .divButton > a{
+	position: absolute;
+	bottom: 0;
+}
+
+.divButton{
+	text-align: left;
+}
+
+.addMarginTop{
+	margin-top: 1%;
+}
+
+.stats{
+	text-align: center;
+	background-color: #f0f0f0;
+	border: 1px solid black;
+	border-radius: 20px 20px;
+}
+
+.stats > h3{
+	margin-top: 2%;
+}
+
+.statsHeader{
+	text-align: center;
+	background-color: #f0f0f0;
+	border: 1px solid black;
+	border-radius: 20px 20px;
+	padding-top: 2%;
+	padding-bottom: 2%;
+}
+
+.rowMargin{
+	margin-top: 2%;
+	margin-bottom: 2%;
+}
+
+.addMarginBottom{
+	margin-bottom: 2%;
+}
+
+#navButton{
+	background-color: rgba(0, 74, 212, 0.5);
+	color: black;
+	padding: 1%;
+	font-size: 1.5em;
+	margin: 0 0 0 1%;
+}
+
+#navButton:hover{
+	background-color: #2980B9;
+}

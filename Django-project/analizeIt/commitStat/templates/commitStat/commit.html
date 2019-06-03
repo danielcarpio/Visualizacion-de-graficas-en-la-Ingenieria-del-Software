@@ -1,0 +1,55 @@
+{% include "header.html" %}
+
+<div class="col-xl-12 col-sm-12 mb-3">
+    <form class="form-horizontal" method="GET" action="/commit/">
+        <input type="hidden" name="q" value="{{title|safe}}"/>
+        <div class="form-group">
+            <label for="b" class="col-md-2 control-label">Branch:</label>
+            <div class="col-md-12">
+                <div class="input-group">
+                    <select name="b" id="b" class="form-control" >
+                        {% for option in branches %}
+                            {% if option == currentBranch %}
+                                <option selected="selected" value="{{option}}">{{option}}</option>
+                            {% endif %}
+                            {% if not option == currentBranch %}
+                                <option value="{{option}}">{{option}}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                    <div class="input-group-addon input-group-button">
+                        <button type="submit" id="show-contact-modal-button" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+    <div class="card mb-3">
+        <div class="card-header">
+          <i class="fas fa-chart-area"></i>
+          Number of lines
+        </div>
+        <div class="card-body">
+            <div id="divGraficaCommits"></div>
+        </div>
+        <div class="card-footer small text-muted">Updated {% now "D d-M-Y H:i" %}</div>
+    </div>
+
+
+    <script>
+        $(document).ready(function(){
+            var width = document.getElementById("divGraficaCommits").clientWidth - parseInt($("#divGraficaCommits").css('padding-left'), 10) - parseInt($("#divGraficaCommits").css('padding-right'), 10);
+            lineChart("#divGraficaCommits", width, width*0.4, '{{graficaCommits|safe}}')
+            $(window).resize(function(){
+                document.getElementById("divGraficaCommits").innerHTML = "";
+                width = document.getElementById("divGraficaCommits").clientWidth - parseInt($("#divGraficaCommits").css('padding-left'), 10) - parseInt($("#divGraficaCommits").css('padding-right'), 10);
+                lineChart("#divGraficaCommits", width, width*0.4, '{{graficaCommits|safe}}')
+            })
+        });
+    </script>
+
+
+{% include "footer.html" %}

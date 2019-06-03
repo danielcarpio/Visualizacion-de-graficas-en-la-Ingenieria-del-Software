@@ -1,0 +1,49 @@
+{% include "../header.html" %}
+{% load static %}
+
+    <div class="card mb-3">
+        <div class="card-header">
+          <i class="fas fa-chart-area"></i>
+          Number of lines
+        </div>
+        <div class="card-body">
+            <div id="divGraficaLineas"></div>
+        </div>
+        <div class="card-footer small text-muted">Updated {% now "D d-M-Y H:i" %}</div>
+    </div>
+
+    <div class="card mb-3">
+        <div class="card-header">
+          <i class="fas fa-chart-area"></i>
+          Constributions per user
+        </div>
+        <div class="card-body">
+            <div id="divGraficaContribuciones"></div>
+        </div>
+        <div class="card-footer small text-muted">Updated {% now "D d-M-Y H:i" %}</div>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            var width = document.getElementById("divGraficaLineas").clientWidth - parseInt($("#divGraficaLineas").css('padding-left'), 10) - parseInt($("#divGraficaLineas").css('padding-right'), 10);
+            verticalBarGraph("#divGraficaLineas", width, width*0.4, '{{languages|safe}}')
+            $(window).resize(function(){
+                document.getElementById("divGraficaLineas").innerHTML = "";
+                width = document.getElementById("divGraficaLineas").clientWidth - parseInt($("#divGraficaLineas").css('padding-left'), 10) - parseInt($("#divGraficaLineas").css('padding-right'), 10);
+                verticalBarGraph("#graficaLineas", width, width*0.4, '{{languages|safe}}')
+            })
+        });
+    </script>
+
+    <script>
+        $(document).ready(function(){
+            var width2 = document.getElementById("divGraficaContribuciones").clientWidth - parseInt($("#divGraficaContribuciones").css('padding-left'), 10) - parseInt($("#divGraficaContribuciones").css('padding-right'), 10);
+            verticalBarGraph("#divGraficaContribuciones", width2, width2*0.5, '{{contributions|safe}}')
+            $(window).resize(function(){
+                document.getElementById("divGraficaContribuciones").innerHTML = "";
+                width2 = document.getElementById("divGraficaContribuciones").clientWidth - parseInt($("#divGraficaContribuciones").css('padding-left'), 10) - parseInt($("#divGraficaContribuciones").css('padding-right'), 10);
+                verticalBarGraph("#divGraficaContribuciones", width2, width2*0.5, '{{contributions|safe}}')
+            })
+        });
+    </script>
+{% include "../footer.html" %}

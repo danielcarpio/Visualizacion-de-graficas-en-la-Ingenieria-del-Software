@@ -1,0 +1,134 @@
+{% include "../header.html" %}
+{% load static %}
+
+<div class="col-xl-12 col-sm-12 mb-3">
+    <form class="form-horizontal" method="GET" action="/tests/">
+        <input type="hidden" name="q" value="{{title|safe}}"/>
+        <div class="form-group">
+            <label for="b" class="col-md-2 control-label">Branch:</label>
+            <div class="col-md-12">
+                <div class="input-group">
+                    <select name="b" id="b" class="form-control" >
+                        {% for option in branches %}
+                            {% if option == currentBranch %}
+                                <option selected="selected" value="{{option}}">{{option}}</option>
+                            {% endif %}
+                            {% if not option == currentBranch %}
+                                <option value="{{option}}">{{option}}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                    <div class="input-group-addon input-group-button">
+                        <button type="submit" id="show-contact-modal-button" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="card mb-3">
+    <div class="card-header">
+      <i class="fas fa-chart-area"></i>
+      Number of tests
+    </div>
+    <div class="card-body">
+        <div id="divGraficaTests"></div>
+    </div>
+    <div class="card-footer small text-muted">Updated {% now "D d-M-Y H:i" %}</div>
+</div>
+
+<script>
+    //Gráfica de tests por app
+    $(document).ready(function(){
+        var width = document.getElementById("divGraficaTests").clientWidth - parseInt($("#divGraficaTests").css('padding-left'), 10) - parseInt($("#divGraficaTests").css('padding-right'), 10);
+        horizontalBarGraph("#divGraficaTests", width, width*0.5, '{{tests|safe}}')
+        $(window).resize(function(){
+            document.getElementById("divGraficaTests").innerHTML = "";
+            width = document.getElementById("divGraficaTests").clientWidth - parseInt($("#divGraficaTests").css('padding-left'), 10) - parseInt($("#divGraficaTests").css('padding-right'), 10);
+            horizontalBarGraph("#divGraficaTests", width, width*0.5, '{{tests|safe}}')
+        })
+    });
+</script>
+
+
+<div class="card mb-3">
+    <div class="card-header">
+      <i class="fas fa-chart-area"></i>
+      Lines of code
+    </div>
+    <div class="card-body">
+        <div id="divGraficaLineasDeCodigo"></div>
+    </div>
+    <div class="card-footer small text-muted">Updated {% now "D d-M-Y H:i" %}</div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        var width = document.getElementById("divGraficaLineasDeCodigo").clientWidth - parseInt($("#divGraficaLineasDeCodigo").css('padding-left'), 10) - parseInt($("#divGraficaLineasDeCodigo").css('padding-right'), 10);
+        groupedHorizontalBarChart("#divGraficaLineasDeCodigo", width, width*0.5, '{{linesOfCodeGraph|safe}}')
+        $(window).resize(function(){
+            document.getElementById("divGraficaLineasDeCodigo").innerHTML = "";
+            width = document.getElementById("divGraficaLineasDeCodigo").clientWidth - parseInt($("#divGraficaLineasDeCodigo").css('padding-left'), 10) - parseInt($("#divGraficaLineasDeCodigo").css('padding-right'), 10);
+            groupedHorizontalBarChart("#divGraficaLineasDeCodigo", width, width*0.5, '{{linesOfCodeGraph|safe}}')
+        })
+    });
+</script>
+
+
+<div class="card mb-3">
+            <div class="card-header">
+              <i class="fas fa-table"></i>
+              Ratio table</div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>App name</th>
+                      <th>Ratio</th>
+                      <th>Functional lines of code</th>
+                      <th>Test lines of code</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>App name</th>
+                      <th>Ratio</th>
+                      <th>Functional lines of code</th>
+                      <th>Test lines of code</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                    {% for app, code in linesOfCode.items %}
+                        <tr>
+                            <td>{{app}}</td>
+                            <td class="ratio">1:{{code.2}}</td>
+                            <td>{{code.0}}</td>
+                            <td>{{code.1}}</td>
+                        </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="card-footer small text-muted">Updated {% now "D d-M-Y H:i" %}</div>
+          </div>
+
+        </div>
+
+<script>
+    var ratios = document.getElementsByClassName("ratio");
+    for(r of ratios){
+        if(r.textContent == "1:0"){
+            r.style.color = 'red';
+        } else if(r.textContent == "1:1"){
+            r.style.color = 'orange';
+        } else if(r.textContent == "1:2"){
+            r.style.color = 'yellow';
+        } else {
+            r.style.color = 'green';
+        }
+    }
+</script>
+{% include "../footer.html" %}
